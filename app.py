@@ -1,10 +1,49 @@
 from groq import Groq
 import streamlit as st
 from streamlit_js_eval import streamlit_js_eval
+import time
 
 
 st.set_page_config(page_title="Streamlit Chat", page_icon="")
 st.title(" CrackIT AI 🚀")
+
+
+placeholder = st.empty()
+text = "by Shreyas B"
+cursor = "<span style='opacity:0.5;'>|</span>"
+
+typed = ""
+for char in text:
+    typed += char
+    placeholder.markdown(
+        f"""
+        <pre style="
+            font-family: 'Courier New', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: #00eaff;
+            text-shadow: 0px 0px 8px #00eaff;
+            margin: 0;
+        ">{typed}{cursor}</pre>
+        """,
+        unsafe_allow_html=True
+    )
+    time.sleep(0.05)
+
+placeholder.markdown(
+    f"""
+    <pre style="
+        font-family: 'Courier New', monospace;
+        font-size: 22px;
+        font-weight: 700;
+        color: #00eaff;
+        text-shadow: 0px 0px 8px #00eaff;
+        margin: 0;
+    ">{text}</pre>
+    """,
+    unsafe_allow_html=True
+)
+
 
 if "setup_complete" not in st.session_state:
     st.session_state.setup_complete = False
